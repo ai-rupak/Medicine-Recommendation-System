@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About - Health Care Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        --dark-bg: #0f0f23;
+        --card-bg: rgba(255, 255, 255, 0.08);
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0a0;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--dark-bg);
+        background-image: 
+            radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+        color: var(--text-primary);
+        min-height: 100vh;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+        margin-right: 15px;
+    }
+
+    .myimg {
+        width: 45px;
+        height: 45px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .myimg:hover {
+        border-color: #667eea;
+        transform: scale(1.05);
+    }
+
+    /* Modern Navbar */
+    .navbar {
+        background: rgba(15, 15, 35, 0.95) !important;
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1rem 0;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-link {
+        font-weight: 500;
+        color: var(--text-secondary) !important;
+        transition: all 0.3s ease;
+        position: relative;
+        margin: 0 0.5rem;
+    }
+
+    .nav-link:hover, .nav-link.active {
+        color: var(--text-primary) !important;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 50%;
+        background: var(--primary-gradient);
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+        width: 100%;
+        left: 0;
+    }
+
+    .btn-outline-success {
+        background: var(--success-gradient);
+        border: none;
+        color: white;
+        font-weight: 600;
+        border-radius: 25px;
+        padding: 8px 20px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+    }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        border-radius: 25px;
+        padding: 8px 15px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        color: var(--text-primary);
+    }
+
+    .form-control::placeholder {
+        color: var(--text-secondary);
+    }
+
+    /* Hero Section */
+    .hero-section {
+        padding: 5rem 0;
+        background: var(--primary-gradient);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M0,200 Q250,50 500,200 T1000,200 L1000,1000 L0,1000 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+        background-size: cover;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        font-weight: 300;
+        animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Content Sections */
+    .content-section {
+        padding: 5rem 0;
+    }
+
+    .section-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        padding: 3rem;
+        margin-bottom: 3rem;
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s ease;
+        animation: slideInUp 0.8s ease;
+    }
+
+    .section-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .section-subtitle {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .section-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+    }
+
+    /* Features Grid */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+
+    .feature-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        padding: 2.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-gradient);
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .feature-card:hover::before {
+        height: 100%;
+        opacity: 0.1;
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .feature-text {
+        color: var(--text-secondary);
+        line-height: 1.6;
+    }
+
+    /* Statistics Section */
+    .stats-section {
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        padding: 4rem;
+        margin: 4rem 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .stat-item {
+        position: relative;
+    }
+
+    .stat-number {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: var(--success-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    /* Mission Section */
+    .mission-section {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        border-radius: 24px;
+        padding: 4rem;
+        margin: 4rem 0;
+        text-align: center;
+    }
+
+    .mission-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: var(--warning-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 2rem;
+    }
+
+    .mission-text {
+        font-size: 1.3rem;
+        line-height: 1.8;
+        color: var(--text-primary);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+        }
+        
+        .section-card {
+            padding: 2rem;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+    }
+</style>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- <div class="logo">
+                <img class="myimg" src="{{ url_for('static', filename='img.png') }}" alt="Health Center Logo">
+            </div> -->
+
+            <a class="navbar-brand" href="#"><i class="fas fa-heartbeat me-2"></i>Health Center</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="/contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/developer"><i class="fas fa-code me-1"></i>Developer</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="/blog"><i class="fas fa-blog me-1"></i>Blog</a>
+                    </li> -->
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">About Our Mission</h1>
+            <p class="hero-subtitle">Revolutionizing healthcare through AI-powered diagnostics</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container content-section">
+        <!-- About Section -->
+        <div class="section-card">
+            <h2 class="section-subtitle">
+                <i class="fas fa-stethoscope"></i>
+                What We Do
+            </h2>
+            <p class="section-text">
+                Our Health Care Center leverages cutting-edge artificial intelligence to provide preliminary medical diagnoses based on symptom analysis. We combine machine learning algorithms with medical expertise to offer users quick, accessible healthcare insights that can help guide their healthcare decisions.
+            </p>
+            <p class="section-text">
+                Our platform is designed to bridge the gap between experiencing symptoms and seeking professional medical care. By providing instant analysis of symptoms, we help users understand potential conditions and take appropriate next steps in their healthcare journey.
+            </p>
+        </div>
+
+        <!-- Features Grid -->
+        <h2 class="section-title">Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="feature-title">AI-Powered Analysis</h3>
+                <p class="feature-text">Advanced machine learning algorithms analyze symptoms to provide accurate preliminary diagnoses based on medical data.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <h3 class="feature-title">Voice Recognition</h3>
+                <p class="feature-text">Speak your symptoms naturally with our integrated voice recognition technology for easy input.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3 class="feature-title">Comprehensive Reports</h3>
+                <p class="feature-text">Receive detailed information including descriptions, precautions, medications, and lifestyle recommendations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Safety Focused</h3>
+                <p class="feature-text">All recommendations include important safety precautions and encourage professional medical consultation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="feature-title">Accessible Anywhere</h3>
+                <p class="feature-text">Mobile-responsive design ensures you can access healthcare insights from any device, anywhere.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="feature-title">Instant Results</h3>
+                <p class="feature-text">Get preliminary diagnoses and recommendations in seconds, not hours or days.</p>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <h2 class="section-title">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Diagnoses Provided</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Accuracy Rate</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Conditions Covered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Available</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="mission-section">
+            <h2 class="mission-title">Our Mission</h2>
+            <p class="mission-text">
+                To democratize access to healthcare information by providing intelligent, accessible, and reliable preliminary medical diagnoses. We believe everyone deserves quick access to healthcare insights that can help them make informed decisions about their health and wellbeing.
+            </p>
+        </div>
+
+        <!-- Technology Section -->
+        <div class="section-card">
+            <h2 class="section-subtitle">
+                <i class="fas fa-cogs"></i>
+                Our Technology
+            </h2>
+            <p class="section-text">
+                Our AI system is built on advanced machine learning models trained on extensive medical datasets. The system continuously learns and improves its diagnostic accuracy through ongoing research and development. We employ natural language processing to understand symptom descriptions and neural networks to identify patterns that suggest specific medical conditions.
+            </p>
+            <p class="section-text">
+                The platform integrates modern web technologies including responsive design, voice recognition APIs, and real-time processing to ensure a seamless user experience across all devices and platforms.
+            </p>
+        </div>
+
+        <!-- Disclaimer Section -->
+        <div class="section-card" style="border-left: 4px solid #f5576c;">
+            <h2 class="section-subtitle">
+                <i class="fas fa-exclamation-triangle"></i>
+                Important Disclaimer
+            </h2>
+            <p class="section-text">
+                <strong>This platform provides preliminary health information for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment.</strong> Always consult with qualified healthcare professionals for accurate diagnosis and appropriate treatment options. In case of medical emergencies, contact emergency services immediately.
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
