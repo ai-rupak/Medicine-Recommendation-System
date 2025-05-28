@@ -2,6 +2,8 @@ from flask import Flask, request, render_template, jsonify  # Import jsonify
 import numpy as np
 import pandas as pd
 import pickle
+from sentence_transformers import SentenceTransformer, util
+import ast
 
 
 # flask app
@@ -20,6 +22,7 @@ diets = pd.read_csv("datasets/diets.csv")
 
 # load model===========================================
 svc = pickle.load(open('models/svc.pkl','rb'))
+# nlp_model = pickle.load(open('models/sentence_transformer.pkl','rb'))
 
 
 #============================================================
@@ -55,6 +58,20 @@ def get_predicted_value(patient_symptoms):
 
 
 
+dataset = pd.read_csv('datasets/Training.csv')
+symptoms_list = dataset.columns[1:-1].tolist()  # Skip 'prognosis' column
+symptoms_list = [s.replace('_', ' ') for s in symptoms_list]
+nlp_model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+symptom_embeddings = nlp_model.encode(symptoms_list, convert_to_tensor=True)
+# Match function
+def match_user_input(user_input):
+    input_embedding = nlp_model.encode(user_input, convert_to_tensor=True)
+    scores = util.pytorch_cos_sim(input_embedding, symptom_embeddings)
+    best_match = symptoms_list[scores.argmax()]
+    return best_match.replace(' ', '_')  # Convert back to original format
+
+
+
 
 # creating routes========================================
 
@@ -77,10 +94,15 @@ def home():
         else:
 
             # Split the user's input into a list of symptoms (assuming they are comma-separated)
-            user_symptoms = [s.strip() for s in symptoms.split(',')]
-            # Remove any extra characters, if any
-            user_symptoms = [symptom.strip("[]' ") for symptom in user_symptoms]
-            predicted_disease = get_predicted_value(user_symptoms)
+            user_symptoms_raw = [s.strip() for s in symptoms.split(',')]
+            user_symptoms_matched = [match_user_input(symptom) for symptom in user_symptoms_raw]
+
+            predicted_disease = get_predicted_value(user_symptoms_matched)
+           # desc, pre, med, die, wrkout = helper(predicted_disease)
+            # user_symptoms = [s.strip() for s in symptoms.split(',')]
+            # # Remove any extra characters, if any
+            # user_symptoms = [symptom.strip("[]' ") for symptom in user_symptoms]
+            # predicted_disease = get_predicted_value(user_symptoms)
             dis_des, precautions, medications, rec_diet, workout = helper(predicted_disease)
 
             my_precautions = []
@@ -100,19 +122,14 @@ def home():
 def about():
     return render_template("about.html")
 # contact view funtion and path
-@app.route('/contact')
-def contact():
-    return render_template("contact.html")
+
 
 # developer view funtion and path
 @app.route('/developer')
 def developer():
     return render_template("developer.html")
 
-# about view funtion and path
-@app.route('/blog')
-def blog():
-    return render_template("blog.html")
+
 
 
 if __name__ == '__main__':
